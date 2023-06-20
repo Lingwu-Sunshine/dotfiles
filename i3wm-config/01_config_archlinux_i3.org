@@ -5,7 +5,7 @@
 2. 可以正常连接网络
 * 二、安装桌面服务
 1. 安装 ~xorg-server~
-   - ~xorg-server~ 是 ~x window~ 的袜，是用于显示图形界面，安装命令如下：
+   - ~xorg-server~ 是 ~x window~ 的实现，是用于显示图形界面，安装命令如下：
      #+begin_src bash
        sudo pacman -S xorg-server
      #+end_src
