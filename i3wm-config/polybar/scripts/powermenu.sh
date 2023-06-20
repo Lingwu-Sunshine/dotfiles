@@ -1,3 +1,7 @@
+#to see https://github.com/adi1090x/rof sdkfjsdkfjakjfksajfkasjfkdsjafkasjdflkjwoiejowjeoifwjoijewoijefwoijfeowijfewoijweiojwijfewiojfeiowjfoiroo
+root
+root
+i
 #!/usr/bin/env bash
 
 ## Author  : Aditya Shakya

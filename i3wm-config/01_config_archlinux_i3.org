@@ -1,0 +1,42 @@
+#+title:  自己配置 ~arch Linux~ ~i3~ 的笔记记录
+
+* 一、安装的前提
+1. 装好的 ~archlinux~
+2. 可以正常连接网络
+* 二、安装桌面服务
+1. 安装 ~xorg-server~
+   - ~xorg-server~ 是 ~x window~ 的袜，是用于显示图形界面，安装命令如下：
+     #+begin_src bash
+       sudo pacman -S xorg-server
+     #+end_src
+   - 如果想从xinit启动i3，那么就装上xorg-xinit，如果你想通过显示管理器启动，那么可以不装（这里选择不装）
+     #+begin_src bash
+       sudo pacman -S xorg-xinit
+     #+end_src
+   - 进行选择安装显示启动器。 ~Linux~ 开机会有显示管理器( ~Display Manager~ )用于登入桌面环境，例如 ~GDM~ 、 ~LightDM~ 、 ~SDDM~ 等。也可以把它去掉，变成开机只有黑底白字的 ~tty~ ，并在登入帐号后，才能进入 ~xorg-server~ 和后面配置好的 ~i3~ 环境
+     + 这里以 ~gdm~ （建议与 ~gnome~ 配合使用）为例，其他的是类似的
+       #+begin_src bash
+	 sudo pacman -S gdm
+
+	 #进行启动系统服务
+	 sudo systemctl enable gdm
+       #+end_src
+* 三、安装和配置 ~i3~
+* （一）、软件的选择
+1. 环境依赖依次安装 ~fish~ , ~alacritty~ , ~feh~ , ~compton~ , ~polybar~ , ~rofi~ , ~i3lock-fancy~ , ~xss-lock~
+   - ~fish~ (提供 ~shell~)
+   - ~alacritty~ (终端)
+   - ~feh~ (桌面图片)
+   - ~compton~ (提供透明)
+   - ~polybar~ (提供 ~bar~ )
+   - ~rofi~ (应用启动器)
+   - ~i3lock-fancy~ (提供 ~i3lock~ 锁屏)
+   - ~xss-lock~ (~xss-lock~ 睡眠前自动锁屏)
+2. 其他配置
+   - 设置一些需要自启的软件，下面是示例
+     #+begin_src yaml
+       exec --no-startup-id fcitx5 & # fcitx5 输入法
+       bindsym $mod+x exec --no-startup-id "$HOME/.config/rofi/powermenu.sh" # 启用基于 rofi 的 powermenu
+     #+end_src
+3. 其他配置，见详细配置文件。
+   - 注：配置文件都放到 ~~/.config/~ 目录下面
