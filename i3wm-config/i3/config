@@ -71,7 +71,8 @@ exec --no-startup-id fcitx5 &
 # 登录时，启用窗口透明
 exec --no-startup-id compton -b
 # startup desktopbackground wallpaper 把桌面壁纸放到此目录下面~/Pictures/DesktopBacground
-exec --no-startup-id feh --randomize --bg-fill ~/Pictures/DesktopBackground
+# exec --no-startup-id feh --randomize --bg-fill ~/Pictures/DesktopBackground
+exec --no-startup-id feh --randomize --bg-fill ~/.config/wallpaper
 # polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # start dmenu (a program launcher)
@@ -232,3 +233,5 @@ mode                    "$system" {
 #bar {
 #        status_command i3status
 #}
+#当切换当前工作区时自动来回切换
+workspace_auto_back_and_forth yes
