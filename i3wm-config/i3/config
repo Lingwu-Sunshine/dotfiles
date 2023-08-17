@@ -80,7 +80,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #程序启动器
 bindsym $mod+Shift+d exec --no-startup-id rofi -show drun #
 #rofi的powermenus
-bindsym $mod+x exec --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
+bindsym $mod+F4 exec --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
 # #锁屏
 # bindsym $mod+Shift+Ctrl+l exec --no-startup-id i3lock-fancy
 bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle # 设置快捷键来显示隐藏 polybar
