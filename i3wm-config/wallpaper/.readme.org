@@ -1,1 +1,8 @@
-存放i3的壁纸
+#+title: 存放i3的壁纸
+#+startup: latexpreview
+#+author: 灵灵
+
+1. 在 ~i3~ 此文件夹的位置( =~/.config/wallpaper= )配置信息为:
+   #+BEGIN_SRC yaml
+     exec --no-startup-id feh --randomize --bg-fill ~/.config/wallpaper
+   #+END_SRC
