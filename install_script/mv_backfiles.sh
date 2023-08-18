@@ -10,6 +10,7 @@ destinationPath="${HOME}/.config/"
 
 files=(
     i3
+    alacritty
     polybar
     rofi
     wallpaper
