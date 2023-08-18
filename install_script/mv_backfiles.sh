@@ -3,7 +3,7 @@
 ####进行移动文件测试
 
 currentlyPath=`pwd`
-backupFilePath=${currentlyPath}"/../i3-wm-config/"
+backupFilePath=${currentlyPath}"/../i3wm-config/"
 destinationPath="${HOME}/.config/"
 
 
