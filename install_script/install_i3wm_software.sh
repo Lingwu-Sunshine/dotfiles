@@ -7,12 +7,13 @@
 
 # Packages
 packages=(
+    alacritty
     picom
     polybar
     feh
     rofi
     i3
-
+    i3-lock-fancy
 )
 
 # Use colors, but only if connected to a terminal, and that terminal
