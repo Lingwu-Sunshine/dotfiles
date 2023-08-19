@@ -6,4 +6,4 @@
    #+BEGIN_SRC yaml
      exec --no-startup-id feh --randomize --bg-fill ~/.config/wallpaper
    #+END_SRC
-2. 将字体文件 ~fonts~ 移至到 ~$HOME/.local/~ 目录下
+2. 将字体文件 ~fonts~ 移至到 ~$HOME/.local/~ 目录下，然后刷新字体库，命令为 ~fc-cache~ 或者 ~fc-cache -vf~
