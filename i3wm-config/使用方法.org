@@ -1,4 +1,4 @@
-#+title: 存放i3的壁纸
+#+title: 使用方法
 #+startup: latexpreview
 #+author: 灵灵
 
@@ -7,3 +7,4 @@
      exec --no-startup-id feh --randomize --bg-fill ~/.config/wallpaper
    #+END_SRC
 2. 将字体文件 ~fonts~ 移至到 ~$HOME/.local/~ 目录下，然后刷新字体库，命令为 ~fc-cache~ 或者 ~fc-cache -vf~
+3. 文件夹 ~fish~ 为 ~fish~ 的配置文件，应放到 =~/.config/= 目录下面

@@ -23,11 +23,11 @@
        #+end_src
 * 三、安装和配置 ~i3~
 * （一）、软件的选择
-1. 环境依赖依次安装 ~fish~ , ~alacritty~ , ~feh~ , ~compton~ , ~polybar~ , ~rofi~ , ~i3lock-fancy~ , ~xss-lock~
+1. 环境依赖依次安装 ~fish~ , ~alacritty~ , ~feh~ , ~picom~ , ~polybar~ , ~rofi~ , ~i3lock-fancy~ , ~xss-lock~
    - ~fish~ (提供 ~shell~)
    - ~alacritty~ (终端)
    - ~feh~ (桌面图片)
-   - ~compton~ (提供透明)
+   - ~picom~ (提供透明)
    - ~polybar~ (提供 ~bar~ )
    - ~rofi~ (应用启动器)
    - ~i3lock-fancy~ (提供 ~i3lock~ 锁屏)

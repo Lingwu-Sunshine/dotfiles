@@ -13,7 +13,7 @@ packages=(
     feh
     rofi
     i3
-    i3-lock-fancy
+    i3lock-fancy
 )
 
 # Use colors, but only if connected to a terminal, and that terminal
