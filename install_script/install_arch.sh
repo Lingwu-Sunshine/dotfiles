@@ -44,6 +44,9 @@ packages=(
     wqy-microhei
     wqy-microhei-lite
     wqy-zenhei
+    noto-fonts
+    noto-fonts-emoji
+    noto-fonts-extra
 )
 
 # Use colors, but only if connected to a terminal, and that terminal

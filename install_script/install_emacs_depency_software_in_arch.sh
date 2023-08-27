@@ -10,6 +10,8 @@ packages=(
     ctags
     #org-download
     xclip
+    #color-rg所用
+    ripgrep
 
     libpoppler
     #dirvish
