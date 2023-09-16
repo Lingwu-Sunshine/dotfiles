@@ -14,6 +14,7 @@ packages=(
     rofi
     i3
     i3lock-fancy
+    xss-lock
 )
 
 # Use colors, but only if connected to a terminal, and that terminal

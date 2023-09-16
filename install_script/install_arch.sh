@@ -39,6 +39,7 @@ packages=(
     ttf-font-awesome
     adobe-source-code-pro-fonts
     adobe-source-han-sans-cn-fonts
+    ttc-iosevka
     # powerline-fonts
     wqy-bitmapfont
     wqy-microhei
