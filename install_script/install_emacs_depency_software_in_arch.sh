@@ -14,6 +14,9 @@ packages=(
     ripgrep
 
     libpoppler
+    #更纱字体
+    ttc-iosevka
+
     #dirvish
     fd poppler ffmpegthumbnailer mediainfo imagemagick tar unzip exa
 )
