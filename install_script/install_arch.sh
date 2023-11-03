@@ -16,16 +16,19 @@ packages=(
     #终端
     tmux
     alacritty
-    dvipng
+#    dvipng
     #tex环境
-    texlive-fontsextra
-    texlive-langchinese
-    texlive-most
+    texlive-core
+    texlive-binextra
+    texlive-plaingeneric
+    #   texlive-fontsextra
+    #    texlive-langchinese
+    #    texlive-most
 
     yay
-    llvm-libs
+    #   llvm-libs
     gcc
-    ccls
+ #   ccls
     xrander
     #解压缩软件
     unarchiver
