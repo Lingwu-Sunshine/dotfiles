@@ -18,7 +18,7 @@ packages=(
     alacritty
 #    dvipng
     #tex环境
-    texlive-core
+    texlive-basic
     texlive-binextra
     texlive-plaingeneric
     #   texlive-fontsextra
