@@ -17,6 +17,9 @@ packages=(
     #更纱字体
     ttc-iosevka
 
+    #eaf 翻译依赖软件
+    crow-translate
+
     #dirvish
     fd poppler ffmpegthumbnailer mediainfo imagemagick tar unzip exa
 )
