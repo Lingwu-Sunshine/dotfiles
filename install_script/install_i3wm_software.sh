@@ -15,6 +15,9 @@ packages=(
     i3
     i3lock-fancy
     xss-lock
+    #网络管理软件
+    dmenu
+    network-manager-dmenu
 )
 
 # Use colors, but only if connected to a terminal, and that terminal
