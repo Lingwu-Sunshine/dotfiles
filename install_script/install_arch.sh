@@ -52,6 +52,11 @@ packages=(
     noto-fonts
     noto-fonts-emoji
     noto-fonts-extra
+    # 视频软件
+    # yt-dlp 为mpv看youtube的依赖；也可以下载youtube视频
+    yt-dlp
+    mpv
+    vlc
 )
 
 # Use colors, but only if connected to a terminal, and that terminal
