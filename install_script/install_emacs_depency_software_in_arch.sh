@@ -22,6 +22,15 @@ packages=(
 
     #dirvish
     fd poppler ffmpegthumbnailer mediainfo imagemagick tar unzip exa
+    #vterm
+    cmake libtool-bin
+    #emacs-rime: librime(pacman系) 或 librime-dev(apt系)
+    librime
+
+    #C/C++
+    gcc clangd clang g++ gdb cmake
+
+
 )
 
 # Use colors, but only if connected to a terminal, and that terminal
