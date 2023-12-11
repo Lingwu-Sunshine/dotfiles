@@ -22,8 +22,8 @@ packages=(
 
     #dirvish
     fd poppler ffmpegthumbnailer mediainfo imagemagick tar unzip exa
-    #vterm
-    cmake libtool-bin
+    #vterm: libtool(pacman系)或libtool-bin(apt系)
+    cmake libtool
     #emacs-rime: librime(pacman系) 或 librime-dev(apt系)
     librime
 
