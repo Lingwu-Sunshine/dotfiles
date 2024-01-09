@@ -21,9 +21,7 @@ packages=(
     texlive-basic
     texlive-binextra
     texlive-plaingeneric
-    #   texlive-fontsextra
-    #    texlive-langchinese
-    #    texlive-most
+    texlive-langcjk
 
     yay
     #   llvm-libs
