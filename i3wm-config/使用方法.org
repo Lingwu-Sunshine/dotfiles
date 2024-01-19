@@ -2,9 +2,101 @@
 #+startup: latexpreview
 #+author: 灵灵
 
+* 一、放置配置文件
 1. 在 ~i3~ 此文件夹的位置( =~/.config/wallpaper= )配置信息为:
    #+BEGIN_SRC yaml
      exec --no-startup-id feh --randomize --bg-fill ~/.config/wallpaper
    #+END_SRC
 2. 将字体文件夹 ~fonts~ 移至到 ~$HOME/.local/share~ 目录下，然后刷新字体库，命令为 ~fc-cache~ 或者 ~fc-cache -vf~
 3. 文件夹 ~fish~ 为 ~fish~ 的配置文件，应放到 =~/.config/= 目录下面
+
+* 二、修改配置信息
+** （一）、 ~polybar~ 配置文件修改
+1. 内存
+2. 存储
+3. 电量
+   - 使用如下命令查看系统信息
+     #+begin_src shell
+       ❯ ls -l /sys/class/power_supply/
+       total 0
+       lrwxrwxrwx 1 root root 0 Jan 19 08:31 ADP1 -> ../../devices/LNXSYSTM:00/ACPI0003:00/power_supply/ADP1/
+       lrwxrwxrwx 1 root root 0 Jan 19 08:31 BAT1 -> ../../devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0A:00/power_supply/BAT1/
+     #+end_src
+   - 更改 =modules.ini= 文件中的电量接口
+     #+begin_src yaml
+       [module/battery]
+       type = internal/battery
+
+       ; This is useful in case the battery never reports 100% charge
+       full-at = 99
+
+       ; Use the following command to list batteries and adapters:
+       ; $ ls -1 /sys/class/power_supply/
+       battery = BAT1 #改这行
+       adapter = ADP1 #还有这行
+     #+end_src
+4. 网络
+   - 使用 ~ip link~ 命令查看网卡信息
+     #+begin_src shell
+       ❯ ip link
+       1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+           link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+       4: wlan1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN mode DORMANT group default qlen 1000
+           link/ether 26:83:29:b6:07:37 brd ff:ff:ff:ff:ff:ff permaddr b8:31:b5:7f:7a:10
+       5: mlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DORMANT group default qlen 1000
+       link/ether b8:31:b5:7f:7b:11 brd ff:ff:ff:ff:ff:ff
+     #+end_src
+   - 更改 =modules.ini= 文件中的网卡接口
+     #+begin_src yaml
+       [module/network]
+       type = internal/network
+       interface = wlan0 #改这一行
+     #+end_src
+5. CPU占用
+6. 时间显示
+7. 亮度与音量
+   - 亮度
+     + 使用如下命令查看系统信息
+       #+begin_src shell
+         ❯ ls -1 /sys/class/backlight/
+         intel_backlight@
+       #+end_src
+     + 更改 =modules.ini= 文件中的网卡接口
+       #+begin_src yaml
+         [module/brightness]
+         ;type = internal/xbacklight
+         type = internal/backlight #更改这一行
+
+         ; Use the following command to list available cards:
+         ; $ ls -1 /sys/class/backlight/
+         card = intel_backlight #和这一行
+         ; card = amdgpu_bl0
+       #+end_src
+   - 音量
+8. 温度
+   - =modules.ini= 文件中的 ~hwmon-path~ 值进行修改
+     #+begin_src yaml
+       [module/temperature]
+       type = internal/temperature
+
+       ; Seconds to sleep between updates
+       ; Default: 1
+       interval = 0.5
+
+       ; Thermal zone to use
+       ; To list all the zone types, run
+       ; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+       ; Default: 0
+       thermal-zone = 0
+
+       ; Full path of temperature sysfs path
+       ; Use `sensors` to find preferred temperature source, then run
+       ; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+       ; to find path to desired file
+       ; Default reverts to thermal zone setting
+       ;;hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+       hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input  #分别进行测试，能显示出现就行
+       ; hwmon-path = /sys/devices/pci0000:00/0000:00:01.3/0000:01:00.0/hwmon/hwmon0/temp1_input
+       ; hwmon-path = /sys/devices/pci0000:00/0000:00:04.0/input
+     #+end_src
+* 三、
