@@ -17,6 +17,8 @@ packages=(
     #更纱字体
     ttc-iosevka
 
+    #eaf brower 下载软件；此外还要（pip3 install aria2p）
+    aria2
     #eaf 翻译依赖软件
     crow-translate
 
