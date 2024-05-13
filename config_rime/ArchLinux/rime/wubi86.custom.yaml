@@ -1,0 +1,142 @@
+patch:
+#候选脚本
+  # "engine/translators/@after last": "lua_translator@unicode_translator"
+  "engine/translators/@next1": "lua_translator@calculator_translator"
+  "engine/translators/@next2": "lua_translator@date_time"
+  "engine/translators/@next3": "lua_translator@Number"
+  "engine/translators/@next4": "lua_translator@jisuanqi2"
+
+#关键过滤
+  # "recognizer/patterns/unicode": "^U.*$"
+  "recognizer/patterns/expression": "^=.*$"
+  # 載入擴充詞庫
+  "translator/dictionary": wubi86.extended
+
+# 加載[方案]依賴,如加載多項則以“@+序號”替代“@next”表下一个
+  "engine/filters/@next1": simplifier@emoji
+  # "engine/filters/@before 0": simplifier@emoji
+  # "engine/filters/@next2": simplifier@ywz
+#  "engine/filters/@next3": simplifier@ywzs
+
+#  "schema/dependencies/@next": easy_english
+
+# 載入副翻譯器及LUA腳本
+  "engine/translators/@next5": table_translator@custom_phrase
+#  "engine/translators/@next": table_translator@easy_english
+# 特殊符號等引入規则
+  'punctuator/import_preset': symbols
+
+
+  # 滤镜過濾重復
+  # "engine/filters/@next3": uniquifier
+  "engine/filters/@next2": uniquifier
+  #emoji开关
+  "switches/@next1":
+    name: emoji
+    reset: 0 #初始状态，0关1开
+    states: [ 😭,  😄 ]  #侯选栏显示内容,可省�??,可更�??
+# #颜文字开关
+#   "switches/@next2":
+#     name: ywz
+#     reset: 0 #初始状态,0关1开
+#     states: [ ^_ ,  ^O ]  #侯选栏显示内容,可省�??,可更�??
+
+  #定义emoji滤镜
+  emoji:
+    # opencc_config: es.json
+    opencc_config: emoji.json
+    option_name: emoji
+    tips: all #none无注释,char单字注释,all全部注释
+  #定义颜文字滤镜
+  # ywz:
+  #   opencc_config: ywz.json
+  #   option_name: ywz
+  #   tips: all #none无注释,char单字注释,all全部注释
+
+  # ↓ 开启自动调频功能（影响盲打体验，不建议开启）
+  "translator/enable_user_dict": false
+
+
+
+
+
+# 用户短语
+  custom_phrase:
+    db_class: stabledb
+    dictionary: ""
+    enable_completion: false
+    enable_sentence: false
+    initial_quality: 0
+    user_dict: custom_phrase
+
+
+
+# #引入词库
+#   "schema/dependencies/@next1": pinyin_simp
+#   "schema/dependencies/@next2": easy_en
+#   # "schema/dependencies/@next3": cangjie5
+# #上标记
+#   "engine/segmentors/@before3": affix_segmentor@luna_pinyin
+#   # "engine/segmentors/@before4": affix_segmentor@cangjie5
+#   "engine/segmentors/@before4": affix_segmentor@easy_english
+# #上副翻译器
+#   "engine/translators/@next6": script_translator@luna_pinyin
+#   # "engine/translators/@next7": table_translator@cangjie5
+#   "engine/translators/@next7": table_translator@easy_english
+# #反查滤镜
+#   "engine/filters/@next5": reverse_lookup_filter@reverse_lookup
+# #副翻译器定义
+
+#  # ↓ 英文翻譯器的設定項
+#   easy_english:
+#     dictionary: easy_en
+#     tag: easy_english
+#     prefix: ';'
+#     suffix: ";"
+#     tips: 〔En〕
+#     enable_completion: true
+#     enable_sentence: false
+#     initial_quality: -1
+#     preedit_format:
+#       - "xlit|_| |"
+
+
+
+#   luna_pinyin:
+#     tag: luna_pinyin
+#     dictionary: pinyin_simp
+#     prefix: "`"
+#     suffix: ";"
+#     tips: 〔拼音〕
+#     preedit_format:
+#       - xform/([nl])v/$1ü/
+#       - xform/([nl])ue/$1üe/
+#       - xform/([jqxy])v/$1u/
+
+
+  # cangjie5:
+  #   tag: cangjie5
+  #   dictionary: cangjie5
+  #   enable_user_dict: false
+  #   prefix: "`/"
+  #   suffix: ";"
+  #   tips: 〔倉頡五代〕
+  #   preedit_format:
+  #     - 'xform/^([a-z]*)$/$1\t（\U$1\E）/'
+  #     - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
+  #   comment_format:
+  #     - "xlit|abcdefghijklmnopqrstuvwxyz~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符～|"
+  #   disable_user_dict_for_patterns:
+  #     - "^z.*$"
+  #     - "^yyy.*$"
+
+  # "reverse_lookup":
+  #   tags: [ luna_pinyin, cangjie5, easy_english ]
+  #   overwrite_comment: false
+    # dictionary: wubi86
+
+
+  # "recognizer/patterns/reverse_lookup": "`([a-z]+'?)*$"
+  # "recognizer/patterns/luna_pinyin": "`[a-z']*;?$"
+  # "recognizer/patterns/easy_english": "^;[A-Z|a-z]*'?$"
+  # "recognizer/patterns/cangjie5": "^`/[a-z]*;?$"

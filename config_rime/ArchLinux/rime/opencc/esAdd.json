@@ -1,0 +1,16 @@
+{
+  "name": "WeChat Emoji",
+  "segmentation": {
+    "type": "mmseg",
+    "dict": {
+      "type": "text",
+      "file": "esAdd.txt"
+    }
+  },
+  "conversion_chain": [{
+    "dict": {
+      "type": "text",
+      "file": "esAdd.txt"
+    }
+  }]
+}

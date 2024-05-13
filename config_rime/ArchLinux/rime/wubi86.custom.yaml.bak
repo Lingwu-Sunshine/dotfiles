@@ -1,0 +1,53 @@
+patch:
+#候选脚本
+  "engine/translators/@after last": "lua_translator@unicode_translator"
+  "engine/translators/@next1": "lua_translator@calculator_translator"
+  "engine/translators/@next2": "lua_translator@date_time"
+  "engine/translators/@next3": "lua_translator@Number"
+  "engine/translators/@next4": "lua_translator@jisuanqi2"
+
+#关键过滤
+  "recognizer/patterns/unicode": "^U.*$"
+  "recognizer/patterns/expression": "^=.*$"
+  # 載入擴充詞庫
+  "translator/dictionary": wubi86.extended
+
+# 加載[方案]依賴,如加載多項則以“@+序號”替代“@next”表下一个
+  "engine/filters/@next1": simplifier@emoji
+  "engine/filters/@next2": simplifier@ywz
+#  "engine/filters/@next3": simplifier@ywzs
+    
+#  "schema/dependencies/@next": easy_english
+
+# 載入副翻譯器及LUA腳本
+  "engine/translators/@next5": table_translator@custom_phrase
+#  "engine/translators/@next": table_translator@easy_english
+# 特殊符號等引入規则
+  'punctuator/import_preset': symbols
+
+
+  # 滤镜過濾重復
+  "engine/filters/@next4": uniquifier
+  # ↓ 开启自动调频功能（影响盲打体验，不建议开启）
+  "translator/enable_user_dict": false
+  
+
+
+
+
+# 用户短语
+  custom_phrase:
+    db_class: stabledb
+    dictionary: ""
+    enable_completion: false
+    enable_sentence: false
+    initial_quality: 0
+    user_dict: custom_phrase
+
+
+
+__patch:
+# Rx: emoji:customize:schema=wubi86 {
+  - patch/+:
+      __include: emoji_suggestion:/patch
+# }

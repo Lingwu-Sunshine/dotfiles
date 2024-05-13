@@ -21,7 +21,9 @@ packages=(
     texlive-basic
     texlive-binextra
     texlive-plaingeneric
-    texlive-langcjk
+    texlive-fontsrecommended
+    texlive-langchinese
+    # texlive-langcjk
 
     yay
     #   llvm-libs
@@ -54,7 +56,7 @@ packages=(
     # yt-dlp 为mpv看youtube的依赖；也可以下载youtube视频
     yt-dlp
     mpv
-    vlc
+    # vlc
 )
 
 # Use colors, but only if connected to a terminal, and that terminal

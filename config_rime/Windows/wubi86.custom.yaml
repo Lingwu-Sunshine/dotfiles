@@ -1,0 +1,173 @@
+# wubi86.custom.yaml
+#
+# 補靪功能：實現快速加载多个滤镜
+#
+#第一次使用建议看完整个补丁文件,加#内容为相关设置说明
+#
+#关于滤镜
+#滤镜是指同文opencc文件夹内json文件及其指定的txt文件组合。最初是用来简繁转换,现已开发更多用途,如多行内容输出,字词典,英语单词加提示,任意方案显示其它方案编码等
+#
+#
+# 作者：风之漫舞 qq:847243643
+#建议加群,同文堂480159874
+#同文堂2群458845988
+
+# 本文件部署位置：
+# ~/.config/ibus/rime  (Linux)
+# ~/Library/Rime  (Mac OS)
+# %APPDATA%\Rime  (Windows)
+#存储卡/rime(Android)
+#
+# 滤镜文件部署位置：
+# ~/.config/ibus/rime/opencc  (Linux)
+# ~/Library/Rime/opencc  (Mac OS)
+# %APPDATA%\Rime\opencc  (Windows)
+#存储卡/rime/opencc (Android)
+#
+# 於重新部署後生效
+#
+#
+# 注意：本補靪適用於所有rime方案。
+#默认方案名wubi86
+# 只須將本 custom.yaml 的前面名字改爲對應的輸入方案名字然後放入用戶文件夾重新部署即可。如更名爲 cangjie5.custom.yaml 即可應用至倉頡輸入法中。
+#
+#
+#完整补丁文件教程请看Rime定制指南
+#https://github.com/rime/home/wiki/CustomizationGuide#%E5%AE%9A%E8%A3%BD%E6%8C%87%E5%8D%97
+#
+#更多滤镜请看
+#https://pan.baidu.com/s/1DfCV0OcOLQRCQmv2kweb_w
+#密码：6666
+#
+#下面以dic_4w_en.json和wubi86.json文件所代表的编码滤镜为例,也可在此的基础上加载更多滤镜
+# 注意关键字为dic_4w_en和wubi86,当你想更换为其它滤镜时,只需要依照xxx.json文件名,将dic_4w_en或wubi86全部更换为xxx即可
+#dic_4w_en滤镜效果说明: 为英语单词在编码区提供中文注释
+#wubi86滤镜效果说明: 为单个汉字提供完整86编码。
+#为了方便替换,已经调整成普通滤镜了,如果需要使用本滤镜,将wubi86编码设置前面的#去掉就好了
+#修改见93行内容
+#
+#
+
+patch:
+
+  #设置滤镜开关,含初始化启用状态和侯选栏按钮文字
+  #下面next1和next2是互等的 ,1为方便注释,2为简化写法
+  #注意①: 2个及以上滤镜必须以next+编号1,2,3,4...100的方式加载,有多少个滤镜就有多少编号,不能跳过整数编号,跳过则后续滤镜不生效
+  #注意②: 只使用1个滤镜的话,使用"switches/@next" , next后面无整数编号
+#  "punctuator/import_preset": mysymbols
+  "recognizer/patterns/punct": "^/([A-Z|a-z]*|[0-9]|10)$"
+#  "engine/translators/@before 0": lua_translator@Jq_translator
+#  "engine/translators/@before 1": lua_translator@lunar_translator
+  "engine/translators/@before 1": table_translator@custom_phrase
+#  "engine/translators/@before 1": lua_translator@number_translator
+  "engine/translators/@before 0": lua_translator@date_translator
+
+#emoji开关
+  "switches/@next1": 
+    name: emoji
+    reset: 0 #初始状态,0关1开
+    states: ["off", "emoji"]  #侯选栏显示内容,可省略,可更改
+#emojiAdd开关
+  "switches/@next2": 
+    name: emojiAdd
+    reset: 0 #初始状态,0关1开
+    states: ["off", "😂"]  #侯选栏显示内容,可省略,可更改
+#唐诗300开关
+  "switches/@next3": 
+    name: long_tangshi300
+    reset: 0 #初始状态,0关1开
+    states: ["off", "唐诗300"]  #侯选栏显示内容,可省略,可更改
+#
+
+  #加载滤镜,初始化滤镜,排位及去重复
+  #重点说明: 多个滤镜包,相同关键字
+  #普通滤镜内容会同时显示,根据编号顺序从前到后显示。滤镜内容可能有重复,建议开启uniquifier去重复,后面有说明
+  #多个编码滤镜包,如果存在相同关键字且未开启uniquifier去重复, 侯选项必然重复
+   #开启uniquifier去,则下面的编码滤镜包内容会覆盖上面的编码滤镜包内容
+  #可以理解为下面的编码滤镜优先级高,优先展示
+#
+  "engine/filters/@next1": simplifier@emoji
+  "engine/filters/@next2": simplifier@emojiAdd
+  "engine/filters/@next3": simplifier@long_tangshi300
+#
+  #※過濾重複的候選字，有可能來自繁簡轉換,请尽量将编号调到最后,以便充分过滤重复内容
+  "engine/filters/@next10": uniquifier
+
+#唐诗三百
+  long_tangshi300:
+    opencc_config: long_tangshi300.json
+    option_name: long_tangshi300
+    show_in_comment: true #开启编码滤镜
+    comment_format:  #编码滤镜正则处理
+#      - "xform/<br>/\n/" #编码滤镜内容换行。注意: 如果用于小狼毫,请将\n改为\r,否则无效
+      - "xform/<br>/\r/" #编码滤镜内容换行。注意: 如果用于小狼毫,请将\n改为\r,否则无效
+      - "xform/&nbsp/ /" #编码滤镜内容显示空格
+#上述带#号为编码滤镜模式工作选项, 普通滤镜直接在行首用#号屏蔽
+    tags:
+      - abc
+    tips: all #none无注释,char单字注释,all全部注释
+
+#定义emoji滤镜
+  emoji:
+    opencc_config: es.json
+    option_name: emoji
+    tips: all #none无注释,char单字注释,all全部注释
+#定义emojiAdd滤镜
+  emojiAdd:
+    opencc_config: esAdd.json
+    option_name: emojiAdd
+    tips: all #none无注释,char单字注释,all全部注释
+
+
+#自定义短语
+  custom_phrase: 
+   dictionary: ""
+   user_dict: custom_phrase
+   db_class: stabledb
+   enable_completion: false
+   enable_sentence: false
+   initial_quality: 1
+  speller:
+   delimiter: " ;'"
+   auto_select: true  #自动上屏
+   max_code_length: 4  #最大码长
+   auto_clear: max_length  #自动清除空码
+   auto_select_unique_candidate: true  #无重码自动上屏
+
+
+
+  #下面屏蔽了wubi86滤镜编码区设置,为普通滤镜效果,滤镜内容直接出现在侯选项,目的做效果对比,正常使用的话建议开滤镜编码区
+#  wubi86:
+#    opencc_config: wubi86.json
+#    option_name: wubi86
+#   show_in_comment: true
+#    comment_format: 	
+#      - "xform/&nbsp/ /"
+#    tags:
+#      - abc
+#    tips: all
+
+  # ↓ 开启自动调频功能（影响盲打体验，不建议开启）
+  "translator/enable_user_dict": false
+
+
+  #为适应部分编码滤镜,替换了原方案编码字符,加入了/\
+  #如果和原方案编码字符有冲突,请查找原方案alphabet节点,将引号内容复制到下面,保留 /\\
+  #如不需要,加#号屏蔽
+  "speller/alphabet": "qwertyuiopasdfghjklzxcvbnm/\\"  #设置编码不自动上屏字符
+
+  #为适应部分编码滤镜,創建一個與編碼串一個模樣的候選項
+  #用于配合/\编码,使输入法生成ts/,ts/aaa这样的侯选项 
+  #如不需要,加#号屏蔽
+  "engine/translators/@next": echo_translator   # （無有其他結果時，）創建一個與編碼串一個模樣的候選項
+  key_binder:
+    import_preset: default #方案切换相关
+    bindings:
+#↓表情开关快捷键  
+#emoji快捷键
+      - {accept: "Control+Shift+E", toggle: emoji, when: always} #emoji开关  
+      - {accept: "Control+Shift+W", toggle: emojiAdd, when: always} #微信表情开关
+#唐诗快捷键
+      - {accept: "Control+Alt+t", toggle: long_tangshi300, when: always} #唐诗300首
+#按“\”符为下一个
+#      - {accept: backslash, send: Down, when: composing}

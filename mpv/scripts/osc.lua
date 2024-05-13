@@ -156,3 +156,4 @@ local state = {
 local thumbfast = {
    width = 0,
    height
+}

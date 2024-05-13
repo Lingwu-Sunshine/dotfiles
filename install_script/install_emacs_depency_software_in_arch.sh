@@ -21,6 +21,8 @@ packages=(
     aria2
     #eaf 翻译依赖软件
     crow-translate
+    #emacs sdcv 依赖软件
+    stardict sdcv
 
     #dirvish
     fd poppler ffmpegthumbnailer mediainfo imagemagick tar unzip exa
@@ -32,7 +34,16 @@ packages=(
     #C/C++
     gcc clangd clang g++ gdb cmake
 
-
+    # 在org-mode 中绘图 dot 和 plantuml
+    #dot
+    graphviz
+    plantuml
+    #安装jdk8
+    jdk8-openjdk
+    #安装 loacate，使用时需要更新数据库（sudo updatedb）
+    mlocate
+    #immersive-translate 翻译依赖
+    translate-shell
 )
 
 # Use colors, but only if connected to a terminal, and that terminal

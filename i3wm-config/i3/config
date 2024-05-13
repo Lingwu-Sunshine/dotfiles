@@ -69,7 +69,8 @@ bindsym $mod+Shift+q kill
 exec --no-startup-id fcitx5 &
 
 # 登录时，启用窗口透明
-exec --no-startup-id compton -b
+# exec --no-startup-id compton -b
+exec --no-startup-id picom -b
 # startup desktopbackground wallpaper 把桌面壁纸放到此目录下面~/Pictures/DesktopBacground
 # exec --no-startup-id feh --randomize --bg-fill ~/Pictures/DesktopBackground
 exec --no-startup-id feh --randomize --bg-fill ~/.config/wallpaper
@@ -241,3 +242,8 @@ bindsym $mod+F10 exec pactl set-sink-mute @DEFAULT_SINK@ toggle # Mute
 bindsym $mod+F11 exec pactl set-sink-volume @DEFAULT_SINK@ -5%  # Up
 bindsym $mod+F12 exec pactl set-sink-volume @DEFAULT_SINK@ +5%  # Down
 # bindsym $mod+F9  exec ~/.config/i3/toggle_sink.sh
+
+#surface 高分辨率下测试示确定
+# workspace_min_width 40
+# exec xrandr --dpi 267.34
+# exec xrandr --dpi 200

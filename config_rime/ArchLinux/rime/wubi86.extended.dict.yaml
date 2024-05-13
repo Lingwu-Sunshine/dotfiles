@@ -1,0 +1,61 @@
+# encoding: utf-8
+
+# 蒼頡檢字法簡體詞典，來自搜狗互聯網詞庫(http://www.sogou.com/labs/dl/w.html)
+# 雪齋、瑾昀整理
+# License: GPL
+---
+name: wubi86.extended
+version: "0.1"
+sort: by_weight
+columns:
+  - text
+  - code
+  - weight
+  - stem
+encoder:
+  exclude_patterns:
+    - '^z.*$'
+  rules:
+    - length_equal: 2
+      formula: "AaAbBaBb"
+    - length_equal: 3
+      formula: "AaBaCaCb"
+    - length_in_range: [4, 10]
+      formula: "AaBaCaZa"
+import_tables:
+  - wubi86
+...
+测试
+艰对	cvcf
+麺	dm
+⺮	ttgy
+大佬	ddwf	131000011
+白嫖	rrvs
+善	uduk	90100001
+觉	ipmq	104000001
+微信	tmwy
+㜩	vtmd
+𫰛	vcag
+增城	fufd
+忠	knu
+懵逼	nagk
+酷睿	sghp
+哒咩	kdku
+卡路里	hkjf
+运维	fcxw
+吃瓜	ktrc
+摆烂	rlou
+赋值	mgwf	11800011
+摸头	raud	5720001
+适配	tdsg
+纳尼	xmnx
+安卓	pvhj	134001
+惦念	nywy	11200011
+干嘛	fgky	834011
+大厂	dddg
+𬯀	byjh
+装满	ufia	34000011
+微博	tmfg
+帐号	mhkg
+手游	rtiy
+端游	umiy
